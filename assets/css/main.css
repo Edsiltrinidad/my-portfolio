@@ -182,77 +182,112 @@ h6 {
   display: none;
 }
 
-/* Update navmenu for horizontal layout */
 .navmenu {
   padding: 0;
   z-index: 9997;
-  background-color: #130f0f; /* Ensure the background is visible */
-  width: 100%;
 }
 
 .navmenu ul {
   list-style: none;
-  padding: 0;
+  padding: 0 0 20px 0;
   margin: 0;
-  display: flex; /* Use flexbox for horizontal layout */
-  justify-content: center; /* Center the menu items */
-  align-items: center;
 }
 
-.navmenu ul li {
-  margin: 0 15px; /* Adjust spacing between items */
-}
-
-.navmenu a {
+.navmenu a,
+.navmenu a:focus {
   color: var(--nav-color);
-  padding: 10px 15px; /* Adjust padding for better spacing */
+  padding: 15px 10px;
   font-family: var(--nav-font);
   font-size: 16px;
   font-weight: 400;
   display: flex;
   align-items: center;
+  white-space: nowrap;
   transition: 0.3s;
-  text-decoration: none; /* Remove underline */
+  width: 100%;
 }
 
-.navmenu a .navicon {
+.navmenu a .navicon,
+.navmenu a:focus .navicon {
   font-size: 20px;
   margin-right: 10px;
 }
 
+.navmenu a .toggle-dropdown,
+.navmenu a:focus .toggle-dropdown {
+  font-size: 12px;
+  line-height: 0;
+  margin-left: auto;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: 0.3s;
+  flex-shrink: 0;
+  background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+}
+
+.navmenu a .toggle-dropdown:hover,
+.navmenu a:focus .toggle-dropdown:hover {
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+}
+
 .navmenu a:hover,
-.navmenu .active {
+.navmenu .active,
+.navmenu .active:focus {
   color: var(--nav-hover-color);
-  background-color: var(--accent-color); /* Add background color on hover */
-  border-radius: 5px; /* Optional: add some rounding */
 }
 
 .navmenu a:hover .navicon,
-.navmenu .active .navicon {
+.navmenu .active .navicon,
+.navmenu .active:focus .navicon {
   color: var(--accent-color);
 }
 
-
-/* Remove dropdown styles if not needed */
-.navmenu .dropdown {
-  display: none;
+.navmenu .active .toggle-dropdown,
+.navmenu .active:focus .toggle-dropdown {
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+  transform: rotate(180deg);
 }
-@media (max-width: 768px) {
-  .navmenu ul {
-    flex-direction: column; /* Switch to vertical layout */
-    align-items: flex-start; /* Align items to the start */
-  }
 
-  .navmenu ul li {
-    margin: 5px 0; /* Adjust spacing for vertical layout */
-  }
+.navmenu .dropdown {
+  display: block;
+}
 
-  .navmenu {
-    position: absolute;
-    top: 50px; /* Adjust based on your header height */
-    width: 100%;
-    background-color: #fff;
-  }
+.navmenu .dropdown a,
+.navmenu .dropdown a:focus {
+  color: --nav-dropdown-color;
+}
+
+.navmenu .dropdown a:hover,
+.navmenu .dropdown .active,
+.navmenu .dropdown .active:focus {
+  color: var(--nav-dropdown-hover-color);
+}
+
+.navmenu .dropdown ul {
+  position: static;
+  display: none;
+  z-index: 99;
+  padding: 5px 10px;
+  margin: 5px 10px;
+  background-color: var(--nav-dropdown-background-color);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  box-shadow: none;
+  transition: all 0.5s ease-in-out;
+}
+
+.navmenu .dropdown ul ul {
+  background-color: rgba(33, 37, 41, 0.1);
+}
+
+.navmenu .dropdown>.dropdown-active {
+  display: block;
+  background-color: rgba(33, 37, 41, 0.03);
 }
 
 /*--------------------------------------------------------------
